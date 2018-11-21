@@ -1,0 +1,1 @@
+var SCALE_IMG_CONST = 0.35;

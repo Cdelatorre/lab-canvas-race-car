@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+  top:0;
+
+}
 body {
   padding: 0;
   text-align: center;
@@ -33,6 +38,8 @@ body button {
 }
 
 #game-board {
-    float: left;
-    padding: 20px 0px;
+    right: 15%;
+    position: absolute;
+    width: 500px;
+    height: 100vh;
 }
