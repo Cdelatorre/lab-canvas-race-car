@@ -25,10 +25,10 @@ Game.prototype.clear = function () {
 }
 
 Game.prototype.draw = function() {  
-
   this.road.draw();
   this.car.draw();
+}
 
-  
-  
+Game.prototype.onKeyDown = function(){
+  this.car.onKeyDown()
 }
