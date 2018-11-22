@@ -9,6 +9,9 @@ function Game(canvasId) {
   this.road = new Road(this.ctx, this.canvas.width, this.canvas.height);
   this.car = new Car(this.ctx, "./images/car.png", this.canvas.width);
 
+  document.addEventListener('keydown', this.onKeyEvent.bind(this));
+  document.addEventListener('keyup', this.onKeyEvent.bind(this));
+
 }
 
 
@@ -30,6 +33,6 @@ Game.prototype.draw = function() {
   this.car.draw();
 }
 
-Game.prototype.onKeyDown = function(){
-  this.car.onKeyDown()
+Game.prototype.onKeyEvent = function(){
+  this.car.onKeyEvent()
 }

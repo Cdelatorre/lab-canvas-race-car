@@ -1,4 +1,6 @@
 
 var SCALE_IMG_CONST = 0.35;
-var LEFT_KEY = 37;
-var RIGHT_KEY = 39;
+var KEY_LEFT = 37;
+var KEY_RIGHT = 39;
+var SPEED_MOVE = 3;
+var FRICTION = 0.8;
