@@ -1,1 +1,4 @@
+
 var SCALE_IMG_CONST = 0.35;
+var LEFT_KEY = 37;
+var RIGHT_KEY = 39;
