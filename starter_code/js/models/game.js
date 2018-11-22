@@ -1,5 +1,5 @@
 function Game(canvasId) {
- 
+
   this.canvas = document.getElementById(canvasId);
   this.canvas.width = 500;
   this.canvas.height = window.innerHeight;
@@ -7,10 +7,11 @@ function Game(canvasId) {
 
 
   this.road = new Road(this.ctx, this.canvas.width, this.canvas.height);
-  this.car = new Car(this.ctx, "./images/car.png");
- 
+  this.car = new Car(this.ctx, "./images/car.png", this.canvas.width);
 
 }
+
+
 
 Game.prototype.start = function(){
 
@@ -24,7 +25,7 @@ Game.prototype.clear = function () {
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 }
 
-Game.prototype.draw = function() {  
+Game.prototype.draw = function() {
   this.road.draw();
   this.car.draw();
 }

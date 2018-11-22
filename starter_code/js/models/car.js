@@ -1,7 +1,8 @@
-function Car(ctx, image) {
+function Car(ctx, image, canvaswidth) {
   this.ctx = ctx;
   this.x = 222;
   this.y = 0;
+  this.canvaswidth = canvaswidth;
 
   this.speed = 20;
 
@@ -11,9 +12,12 @@ function Car(ctx, image) {
     this.isReady = true; this.width = this.image.width * SCALE_IMG_CONST ;
     this.height = this.image.height * SCALE_IMG_CONST ;
   }).bind(this);
-  
-  document.onkeydown = this.onKeyDown.bind(this);
+
+  document.onkeydown = this.onKeyDown.bind(this); // Usamos bind por que quien es this realmente aqui es window ya que estamos diciendole al documento
+  // que le metodo onkeydown se produzca aunque nuestro objetivo es que sea Car.onKeyDown quien identifique las teclas para mover el coche.
 }
+
+
 
 
 Car.prototype.draw = function() {
@@ -33,17 +37,26 @@ Car.prototype.draw = function() {
   }
   this.ctx.restore();
 
-
 }
 
-Car.prototype.onKeyDown = function(event) {
-  this.x++
+Car.prototype.onKeyDown = function(evt) {
+  if (evt.keyCode == RIGHT_KEY) {
+    this.moveRight();
+  } else if (evt.keyCode == LEFT_KEY) {
+    this.moveLeft();
+  }
 };
 
-Car.prototype.moveLeft =  function(){
-  this.x--
-}
 
-Car.prototype.moveRight =  function(){
-  this.x++
-}
+Car.prototype.moveRight = function() {
+  if (this.x < this.canvaswidth - 98) {
+    this.x += this.speed;
+  }
+};
+
+Car.prototype.moveLeft = function() {
+  if (this.x > 42) {
+    this.x -= this.speed;
+  }
+
+};
