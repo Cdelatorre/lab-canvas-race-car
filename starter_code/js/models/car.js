@@ -1,19 +1,23 @@
 function Car(ctx, image, canvaswidth) {
   this.ctx = ctx;
   this.x = 222;
-  this.y = 0;
+
   this.canvaswidth = canvaswidth;
 
+  this.width = 100;
   this.vx = 0;
 
   this.image = new Image();
   this.image.src = image;
-  this.image.onload = (function() {
-    this.isReady = true; this.width = this.image.width * SCALE_IMG_CONST ;
-    this.height = this.image.height * SCALE_IMG_CONST ;
+  this.image.onload = (function () {
+    this.isReady = true;
+    this.width = this.image.width * SCALE_IMG_CONST;
+    this.height = this.image.height * SCALE_IMG_CONST;
+    return this.height;
   }).bind(this);
 
- 
+  this.y = window.innerHeight - 120;
+
   this.movements = {
     right: false,
     left: false
@@ -21,8 +25,7 @@ function Car(ctx, image, canvaswidth) {
 }
 
 
-
-Car.prototype.onKeyEvent = function(evt) {
+Car.prototype.onKeyEvent = function (evt) {
   var state = event.type === 'keydown' ? true : false;
   switch (event.keyCode) {
     case KEY_LEFT:
@@ -34,23 +37,21 @@ Car.prototype.onKeyEvent = function(evt) {
   }
 };
 
-Car.prototype.animate = function() {
 
-  if (this.movements.right && this.x < this.canvaswidth - 105 ) {
+Car.prototype.animate = function () {
+
+  if (this.movements.right && this.x < this.canvaswidth - 105) {
     this.vx = SPEED_MOVE;
   }
-
   if (this.movements.left && this.x > 50) {
     this.vx = -SPEED_MOVE;
   }
-
   this.x += this.vx;
   this.vx *= FRICTION;
 }
 
 
-
-Car.prototype.draw = function() {
+Car.prototype.draw = function () {
   this.animate();
   if (this.isReady) {
     this.ctx.save();
@@ -67,4 +68,12 @@ Car.prototype.draw = function() {
     );
   }
   this.ctx.restore();
+}
+
+
+Car.prototype.collideWith = function (obstacle) {
+  return this.x < obstacle.x + obstacle.width &&
+    this.x + this.width > obstacle.x &&
+    this.y < obstacle.y + obstacle.height &&
+    this.height + this.y > obstacle.y;
 }

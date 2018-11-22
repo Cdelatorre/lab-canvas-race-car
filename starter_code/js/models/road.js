@@ -5,6 +5,7 @@ function Road(ctx, width, height) {
   this.y = 0;
   this.width = width;
   this.height = height;
+
   
 }
 
