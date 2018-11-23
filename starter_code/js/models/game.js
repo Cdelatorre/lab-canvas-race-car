@@ -80,7 +80,11 @@ Game.prototype.isGameOver = function () {
 
 Game.prototype.addObstacle = function () {
   var widthUp = (Math.random() * this.canvas.width / 2) + 40;
+  if(widthUp <= 80){
+    this.obstacles.push(new Obstacle(this.ctx, (Math.random() * widthUp + 50), 0, 80))    
+  } else {
   this.obstacles.push(new Obstacle(this.ctx, (Math.random() * widthUp + 50), 0, widthUp))
+  }
   console.log('holas');
 
 
